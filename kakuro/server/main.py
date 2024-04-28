@@ -31,6 +31,7 @@ db = {}
 
 @ app.get("/")
 def get_puzzle():
+    global db
     uuid = str(uuid4())
 
     problem_index = np.random.randint(len(problems))
@@ -51,12 +52,12 @@ class Body(BaseModel):
 
 @app.post("/submit_solution/{uuid}")
 def submit_solution(uuid: str, body: Body):
+    global db
 
     solution = body.solution
 
-    for uuid in db:
-        if time.time() - db[uuid]["timestamp"] > 10:
-            del db[uuid]
+    db = {uuid: db[uuid]
+          for uuid in db if time.time() - db[uuid]["timestamp"] <= 10}
 
     if uuid not in db:
         return {"error": "Invalid UUID or timed out."}

@@ -3,7 +3,7 @@ services:
     build: .
     container_name: stem_cv_web_chall
     ports:
-      - "10008:80"
+      - "10002:80"
     restart: unless-stopped
   restarter:
     image: docker:cli

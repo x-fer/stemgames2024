@@ -1,2 +1,2 @@
-# Not SQL
+#  SQL
 Solution: do stuff until it works

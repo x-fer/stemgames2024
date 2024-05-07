@@ -30,6 +30,6 @@
         body: logoutQuery,
         credentials: 'include'
       }).then(r => {
-        window.location.href = "/"; 
+        window.location.href = "/verysecuresite"; 
       });
     });

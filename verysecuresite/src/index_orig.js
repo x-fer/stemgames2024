@@ -17,7 +17,7 @@
             document.getElementById("Register-error").textContent = data.errors[0].message;
           } else {
             if (data.data.accountCreateAnonymousSession._id) {
-              window.location.href = "/dashboard"; // Redirect to dashboard upon successful Register
+              window.location.href = "/dashboard.html"; // Redirect to dashboard upon successful Register
             } else {
               document.getElementById("Register-error").textContent = data.errors[0].message;
             }

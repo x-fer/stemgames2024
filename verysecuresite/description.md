@@ -4,4 +4,4 @@ Also, I heard SQL was vulnerable to "injections", so I switched to something muc
 
 Not sure if it's solvable in the current state. Need to add another request to give the user more data
 
-Url: [http://209.38.173.120:10003](http://209.38.173.120:10003)
+Url: [https://stemgames24.xfer.hr/verysecuresite](https://stemgames24.xfer.hr/verysecuresite)

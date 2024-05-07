@@ -42,19 +42,19 @@ def get_puzzle():
     }
 
     return {"uuid": uuid,
-            "instructions": "Within 10 seconds, solve 11x11 Kakuro i.e. fill in all @ cells with numbers 1-9 according to the rules of Kakuro. Then submit to /submit_solution/{uuid} with a post request with the solution FLATTENED (121 entries list) and AS STRINGS in the body as json. Example: {'solution': ['#', '#', '-1,2', '3', '4', '5', '6', '7', '8', '9', '1', '2', ...]}.",
-            "problem": problems[problem_index]}
+            "instructions": "Within 10 seconds, solve 11x11 Kakuro i.e. fill in all @ cells with numbers 1-9 according to the rules of Kakuro. Then submit to /submit_solution/{uuid} with a post request with the solution (11x11 grid) and AS STRINGS in the body as json. Example: {'solution': [['#', '#', '-1,2', '3' ...], ['4', '5', '6', '7' ..], ['8', '9', '1', '2' ...], ...]}.",
+            "problem": np.array(problems[problem_index]).reshape(11, 11).tolist()}
 
 
 class Body(BaseModel):
-    solution: List[str]
+    solution: List[List[str]]
 
 
 @app.post("/submit_solution/{uuid}")
 def submit_solution(uuid: str, body: Body):
     global db
 
-    solution = body.solution
+    solution = np.array(body.solution).flatten()
 
     db = {uuid: db[uuid]
           for uuid in db if time.time() - db[uuid]["timestamp"] <= 10}
@@ -75,4 +75,4 @@ def submit_solution(uuid: str, body: Body):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=10000)

@@ -2,15 +2,15 @@ import requests
 from solver import solve
 import numpy as np
 
-r = requests.get("http://127.0.0.1:8000/")
+r = requests.get("http://209.38.173.120:10000/")
 
-problem = np.array(r.json()["problem"]).reshape(11, 11)
+problem = np.array(r.json()["problem"])
 uuid = r.json()["uuid"]
 
 print(solution := solve(problem))
 
-r = requests.post(f"http://127.0.0.1:8000/submit_solution/{uuid}", json={
+r = requests.post(f"http://209.38.173.120:10000/submit_solution/{uuid}", json={
     "solution":
-                  solution.flatten().tolist()})
+                  solution.tolist()})
 
 print(r.json())

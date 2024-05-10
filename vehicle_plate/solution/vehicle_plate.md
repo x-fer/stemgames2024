@@ -1,3 +1,3 @@
 # Writeup
 
-The words are MD5 hashed, split them where the underscore is, search in and online database, and join together with underscores again to get the flag.
+There are 4 MD5 hashed words that are concatenated into a single line. Split them and lookup on any MD5 database.

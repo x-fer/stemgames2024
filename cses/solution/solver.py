@@ -11,9 +11,9 @@ def solve():
     data = response.json()["input"]
     uuid = response.json()["uuid"]
 
-    for x in os.listdir("cses-solutions/solutions/"):
-        if x.startswith(f"{problem}"):
-            binary = x
+    for x in os.listdir("cses-solutions/src/"):
+        if problem in x:
+            os.system(f"g++ cses-solutions/src/{problem}.cpp")
             break
 
     # write input to file
@@ -22,7 +22,7 @@ def solve():
 
     # check output
     output = subprocess.check_output(
-        f"./cses-solutions/solutions/{binary} <input.txt", shell=True, timeout=1).decode()
+        f"./a.out < input.txt", shell=True, timeout=1).decode()
 
     response = requests.post(
         f"http://209.38.173.120:10001/submit_solution/{uuid}", json={"solution": output})

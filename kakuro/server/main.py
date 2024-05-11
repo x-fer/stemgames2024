@@ -76,4 +76,7 @@ def submit_solution(uuid: str, body: Body):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=10000)
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3f060766c03afad8d9d4cf0ff5cccf381c4e1ac

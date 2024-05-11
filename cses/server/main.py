@@ -54,7 +54,7 @@ def get_puzzle():
 
     return {
         "uuid": uuid,
-        "instructions": f"Within 10 seconds, solve https://cses.fi/problemset/task/{test_case['task']}. Then submit to /submit_solution/{uuid} with a post request with the solution in the body as json. Example: {'solution': 'YES'}",
+        "instructions": f"Within 10 seconds, solve https://cses.fi/problemset/task/{test_case['task']}." + " Then submit to /submit_solution/{uuid} with a post request with the solution in the body as json. Example: {'solution': 'YES'}",
         "task": test_case["task"],
         "input": test_case["in"]
     }

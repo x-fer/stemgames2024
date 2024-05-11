@@ -1,6 +1,8 @@
 import os
 import subprocess
+import time
 import requests
+from multiprocessing import Pool
 
 
 def solve():
@@ -20,13 +22,19 @@ def solve():
 
     # check output
     output = subprocess.check_output(
-        f"./cses-solutions/solutions/{binary} <input.txt", shell=True).decode()
+        f"./cses-solutions/solutions/{binary} <input.txt", shell=True, timeout=1).decode()
 
     response = requests.post(
         f"http://localhost:10001/submit_solution/{uuid}", json={"solution": output})
+
+    # "result": "Correct",
+
+    assert response.status_code == 200 and response.json()[
+        "result"] == "Correct", response.json()
 
     print(response.json())
 
 
 if __name__ == "__main__":
-    solve()
+    for _ in range(100):
+        solve()

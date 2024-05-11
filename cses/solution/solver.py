@@ -6,7 +6,7 @@ from multiprocessing import Pool
 
 
 def solve():
-    response = requests.get("http://localhost:10001/")
+    response = requests.get("http://209.38.173.120:10001/")
     problem = response.json()["task"]
     data = response.json()["input"]
     uuid = response.json()["uuid"]
@@ -25,7 +25,7 @@ def solve():
         f"./cses-solutions/solutions/{binary} <input.txt", shell=True, timeout=1).decode()
 
     response = requests.post(
-        f"http://localhost:10001/submit_solution/{uuid}", json={"solution": output})
+        f"http://209.38.173.120:10001/submit_solution/{uuid}", json={"solution": output})
 
     # "result": "Correct",
 
